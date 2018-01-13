@@ -12,8 +12,6 @@ import os
 #numpy to convert python lists to numpy arrays as it is needed by OpenCV face recognizers
 import numpy as np
 
-subjects = ["","Jayesh", "Kanan", "Shalin", "Vandana"]
-
 #function to detect face using OpenCV
 def detect_face(img):
 #convert the test image to gray scale as opencv face detector expects gray images
@@ -117,28 +115,7 @@ def draw_rectangle(img, rect):
 #passed (x, y) coordinates. 
 def draw_text(img, text, x, y):
     cv2.putText(img, text, (x, y), cv2.FONT_HERSHEY_PLAIN, 1.5, (0, 255, 0), 2)
-#%% 
- #this function recognizes the person in image passed
-#and draws a rectangle around detected face with name of the 
-#subject
-def predict(face_recognizer, img):
-#make a copy of the image as we don't want to change original image
-#    img = test_img.copy()
-#detect face from the image
-    face, rect = detect_face(img)
 
-#predict the image using our face recognizer 
-    label= face_recognizer.predict(face)
-#get name of respective label returned by face recognizer
-#    print(label)
-#    label_text = subjects[label[0]]
- 
-##draw a rectangle around face detected
-#    draw_rectangle(img, rect)
-##draw name of predicted person
-#    draw_text(img, label_text, rect[0], rect[1]-5)
- 
-    return subjects[label[0]]
 #%%
 #print("Predicting images...")
 #
