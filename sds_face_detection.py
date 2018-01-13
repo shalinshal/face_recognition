@@ -20,7 +20,8 @@ def detect_face(face_recognizer, mirror=False):
 								 scaleFactor = 1.2,
 								 minNeighbors = 5)
         for (x, y, w, h) in face:                   #detect faces in the image
-            name = predict(face_recognizer, img)
+            face_img = gray_img[y-75:y+h+75,x-50:x+w+50]
+            name = predict(face_recognizer, face_img)
             cv2.rectangle(img, (x, y), (x+w, y+h), (0, 255, 0), 2)
             cv2.putText(img, name, (x,y-5), font, .6,(0,255,0),1,cv2.LINE_AA)
         cv2.imshow('frame',img)
@@ -33,11 +34,8 @@ def detect_face(face_recognizer, mirror=False):
 #and draws a rectangle around detected face with name of the 
 #subject
 def predict(face_recognizer, img):
-#detect face from the image
-    face, rect = detect_face(img)
 #predict the image using our face recognizer 
-    label= face_recognizer.predict(face)
-    
+    label= face_recognizer.predict(img)
     return subjects[label[0]]
 
 def main():
