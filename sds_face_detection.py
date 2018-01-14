@@ -11,7 +11,6 @@ font = cv2.FONT_HERSHEY_SIMPLEX
 #face detection function
 def detect_face(face_recognizer, mirror=False):
     cam = cv2.VideoCapture(0)
-    cam.release()
     while True:
         _val, img = cam.read()
         if mirror:
